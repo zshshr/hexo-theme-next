@@ -22,7 +22,7 @@
   </div>
 {%- endif %}
 
-{%- if config.symbols_count_time.total_symbols or config.symbols_count_time.total_time %}
+{# {%- if config.symbols_count_time.total_symbols or config.symbols_count_time.total_time %}
 <div class="wordcount">
   {%- if config.symbols_count_time.total_symbols %}
   <span class="post-meta-item">
@@ -34,9 +34,9 @@
     {%- endif %}
     <span title="{{ __('symbols_count_time.count_total') }}">{{ symbolsCountTotal(site) }}</span>
   </span>
-  {%- endif %}
+  {%- endif %} #}
 
-  {%- if config.symbols_count_time.total_time %}
+  {# {%- if config.symbols_count_time.total_time %}
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
@@ -48,9 +48,9 @@
   </span>
   {%- endif %}
 </div>
-{%- endif %}
+{%- endif %} #}
 
-{%- if theme.busuanzi_count.enable %}
+{# {%- if theme.busuanzi_count.enable %}
 <div class="busuanzi-count">
   {%- if theme.busuanzi_count.total_visitors %}
     <span class="post-meta-item" id="busuanzi_container_site_uv">
@@ -74,13 +74,13 @@
     </span>
   {%- endif %}
 </div>
-{%- endif %}
+{%- endif %} #}
 
-{%- if theme.footer.powered %}
+{# {%- if theme.footer.powered %}
   <div class="powered-by">
     {%- set next_site = 'https://theme-next.js.org' if theme.scheme === 'Gemini' else 'https://theme-next.js.org/' + theme.scheme | lower + '/' %}
     {{- __('footer.powered', next_url('https://hexo.io', 'Hexo') + ' & ' + next_url(next_site, 'NexT.' + theme.scheme)) }}
   </div>
-{%- endif %}
+{%- endif %} #}
 
 {{- next_inject('footer') }}
