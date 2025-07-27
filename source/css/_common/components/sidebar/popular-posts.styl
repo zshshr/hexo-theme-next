@@ -1,0 +1,147 @@
+.popular-posts {
+  margin-top: 20px;
+  padding: 15px;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+
+  .popular-posts-title {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 15px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #333;
+
+    i {
+      font-size: 14px;
+      color: #ff6b6b;
+    }
+  }
+
+  .popular-posts-list {
+    .popular-post-item {
+      margin-bottom: 15px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid #f0f0f0;
+
+      &:last-child {
+        border-bottom: none;
+        margin-bottom: 0;
+      }
+
+      .post-title {
+        margin-bottom: 8px;
+
+        a {
+          font-size: 13px;
+          line-height: 1.4;
+          color: #333;
+          text-decoration: none;
+          display: -webkit-box;
+          -webkit-line-clamp: 2;
+          -webkit-box-orient: vertical;
+          overflow: hidden;
+
+          &:hover {
+            color: #ff6b6b;
+          }
+        }
+      }
+
+      .post-excerpt {
+        font-size: 11px;
+        color: #666;
+        line-height: 1.3;
+        margin-bottom: 8px;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+      }
+
+      .post-meta {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        font-size: 10px;
+        color: #999;
+        line-height: 1;
+
+        .post-date {
+          display: flex;
+          align-items: center;
+          gap: 3px;
+
+          i {
+            font-size: 9px;
+            color: #999;
+          }
+        }
+
+        .post-views {
+          display: flex;
+          align-items: center;
+          gap: 3px;
+
+          i {
+            font-size: 9px;
+            color: #ff6b6b;
+          }
+
+          span {
+            font-weight: normal;
+            color: #999;
+          }
+        }
+      }
+    }
+  }
+}
+
+// 深色模式样式
+[data-theme="dark"] .popular-posts {
+  background: #2d3748;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+
+  .popular-posts-title {
+    color: #e2e8f0;
+
+    i {
+      color: #fc8181;
+    }
+  }
+
+  .popular-posts-list .popular-post-item {
+    border-bottom-color: #4a5568;
+
+    .post-title a {
+      color: #e2e8f0;
+
+      &:hover {
+        color: #fc8181;
+      }
+    }
+
+    .post-excerpt {
+      color: #a0aec0;
+    }
+
+    .post-meta {
+      color: #718096;
+
+      .post-date i {
+        color: #718096;
+      }
+
+      .post-views i {
+        color: #fc8181;
+      }
+
+      .post-views span {
+        color: #718096;
+      }
+    }
+  }
+} 

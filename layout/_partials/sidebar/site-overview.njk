@@ -79,3 +79,157 @@
     {{ next_url(ccURL, ccImage, {class: 'cc-opacity'}) }}
   </div>
 {%- endif %}
+
+{%- if theme.popular_posts.enable %}
+<style>
+.popular-posts {
+  margin-top: 20px;
+  padding: 15px;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.popular-posts .popular-posts-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 15px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #333;
+}
+
+.popular-posts .popular-posts-title i {
+  font-size: 14px;
+  color: #ff6b6b;
+}
+
+.popular-posts .popular-posts-list .popular-post-item {
+  margin-bottom: 15px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.popular-posts .popular-posts-list .popular-post-item:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+}
+
+.popular-posts .popular-posts-list .popular-post-item .post-title {
+  margin-bottom: 8px;
+}
+
+.popular-posts .popular-posts-list .popular-post-item .post-title a {
+  font-size: 13px;
+  line-height: 1.4;
+  color: #333;
+  text-decoration: none;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.popular-posts .popular-posts-list .popular-post-item .post-title a:hover {
+  color: #ff6b6b;
+}
+
+.popular-posts .popular-posts-list .popular-post-item .post-excerpt {
+  font-size: 11px;
+  color: #666;
+  line-height: 1.3;
+  margin-bottom: 8px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.popular-posts .popular-posts-list .popular-post-item .post-meta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 10px;
+  color: #999;
+  line-height: 1;
+}
+
+.popular-posts .popular-posts-list .popular-post-item .post-meta .post-date {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+}
+
+.popular-posts .popular-posts-list .popular-post-item .post-meta .post-date i {
+  font-size: 9px;
+  color: #999;
+}
+
+.popular-posts .popular-posts-list .popular-post-item .post-meta .post-views {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+}
+
+.popular-posts .popular-posts-list .popular-post-item .post-meta .post-views i {
+  font-size: 9px;
+  color: #ff6b6b;
+}
+
+.popular-posts .popular-posts-list .popular-post-item .post-meta .post-views span {
+  font-weight: normal;
+  color: #999;
+}
+</style>
+
+<div class="popular-posts">
+  <div class="popular-posts-title">
+    {%- if theme.popular_posts.icon %}
+      <i class="{{ theme.popular_posts.icon }}"></i>
+    {%- endif %}
+    <span>{{ theme.popular_posts.title }}</span>
+  </div>
+  <div class="popular-posts-list" id="popular-posts-container">
+    {%- set posts = get_popular_posts(site.posts) %}
+    {%- for post in posts %}
+    <div class="popular-post-item" data-post-path="{{ post.path }}" data-post-title="{{ post.title }}" data-post-date="{{ post.date if post.date else '' }}">
+      <div class="post-title">
+        <a href="{{ url_for(post.path) }}" title="{{ post.title }}">
+          {{ post.title }}
+        </a>
+      </div>
+      {%- if theme.popular_posts.display.includes('excerpt') %}
+      <div class="post-excerpt">
+        {{ post.excerpt or post.content | truncate(60) }}
+      </div>
+      {%- endif %}
+      {%- if theme.popular_posts.display.includes('views') or theme.popular_posts.display.includes('date') %}
+      <div class="post-meta">
+        {%- if theme.popular_posts.display.includes('views') %}
+        <div class="post-views">
+          <i class="far fa-eye"></i>
+          <span class="post-views-count" data-post-path="{{ post.path }}" data-post-views="{{ get_real_post_views(post) }}">
+            <span id="busuanzi_value_page_pv_{{ post.path | replace('/', '_') | replace('.', '_') }}">{{ get_real_post_views(post) }}</span>
+          </span>
+        </div>
+        {%- endif %}
+        {%- if theme.popular_posts.display.includes('date') %}
+        <div class="post-date">
+          <i class="fa fa-calendar"></i>
+          <script>
+            document.write(new Date({{ post.date }}).toLocaleDateString('zh-CN', {
+              year: 'numeric',
+              month: '2-digit',
+              day: '2-digit'
+            }));
+          </script>
+        </div>
+        {%- endif %}
+      </div>
+      {%- endif %}
+    </div>
+    {%- endfor %}
+  </div>
+</div>
+{%- endif %}
