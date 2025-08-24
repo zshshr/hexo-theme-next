@@ -764,6 +764,11 @@ google_analytics:
   # only needed if you are using `only_pageview` mode, https://developers.google.com/analytics/devguides/collection/protocol/ga4
   measure_protocol_api_secret:
 
+# Google AdSense
+# See: https://www.google.com/adsense
+google_adsense:
+  client_id: # ca-pub-4033510619776724
+
 # Baidu Analytics
 # See: https://tongji.baidu.com
 baidu_analytics: # <app_id>
